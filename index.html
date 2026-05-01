@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>علم نفس النمو – الفرقة الأولى</title>
+<style>
+
+/* =========================================
+   ROOT VARIABLES & GLOBAL RESET
+========================================= */
+:root {
+  --navy:       #0d1f3c;
+  --navy2:      #1a3260;
+  --navy3:      #243b6e;
+  --gold:       #c8872a;
+  --gold2:      #e8a84e;
+  --gold3:      #fff0cc;
+  --cream:      #faf7f2;
+  --white:      #ffffff;
+  --light:      #f0ece4;
+  --muted:      #6b7280;
+  --text:       #1e2635;
+  --text2:      #3d4a5c;
+  --teal:       #0a6b6e;
+  --teal2:      #12a08a;
+  --teal3:      #d4f5ee;
+  --rose:       #9b2335;
+  --rose2:      #fdecea;
+  --purple:     #4a2d7a;
+  --purple2:    #ede8f7;
+  --shadow:     0 4px 20px rgba(13,31,60,0.10);
+  --shadow2:    0 8px 40px rgba(13,31,60,0.18);
+  --radius:     14px;
+  --radius2:    22px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', 'Tahoma', 'Arabic Transparent', 'Arial', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.9;
+  font-size: 16px;
+  padding-bottom: 80px;
+}
+
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.25; color: var(--navy); }
+h2 { font-size: clamp(1.35rem, 3.5vw, 2.1rem); font-weight: 800; line-height: 1.3; color: var(--navy); }
+h3 { font-size: clamp(1.05rem, 2.5vw, 1.45rem); font-weight: 700; color: var(--navy2); }
+h4 { font-size: 1.05rem; font-weight: 700; color: var(--teal); }
+
+p { margin-bottom: 0.9rem; color: var(--text2); }
+p:last-child { margin-bottom: 0; }
+
+.highlight {
+  background: linear-gradient(120deg, #fff3cc 0%, #ffe082 100%);
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.term-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--teal), var(--teal2));
+  color: #fff;
+  padding: 2px 12px;
+  border-radius: 30px;
+  font-size: 0.82em;
+  font-weight: 700;
+  margin: 2px 0;
+}
+
+/* =========================================
+   TOP NAVIGATION
+========================================= */
+#topnav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  height: 60px;
+  box-shadow: 0 3px 20px rgba(13,31,60,0.40);
+  gap: 8px;
+}
+
+.nav-brand {
+  color: var(--gold2);
+  font-size: 1rem;
+  font-weight: 900;
+  white-space: nowrap;
+  letter-spacing: -0.3px;
+  margin-left: auto;
+  padding-left: 12px;
+  border-left: 2px solid rgba(255,255,255,0.12);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2px;
+  overflow-x: auto;
+  flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-links button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: var(--transition);
+  white-space: nowrap;
+  font-family: inherit;
+}
+.nav-links button:hover { color: var(--gold2); background: rgba(255,255,255,0.07); }
+.nav-links button.active { color: var(--gold2); background: rgba(255,255,255,0.10); }
+
+/* =========================================
+   BOTTOM NAVIGATION (MOBILE STYLE)
+========================================= */
+#bottomnav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 998;
+  background: var(--navy);
+  display: flex;
+  height: 64px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 -4px 24px rgba(13,31,60,0.30);
+}
+
+.bnav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.58rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  transition: var(--transition);
+  padding: 6px 2px;
+  text-decoration: none;
+}
+.bnav-item:hover { color: var(--gold2); }
+.bnav-item.active { color: var(--gold2); }
+
+.bnav-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* =========================================
+   PAGE SYSTEM
+========================================= */
+.page { display: none; animation: fadeIn 0.35s ease; }
+.page.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   SHARED LAYOUT
+========================================= */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+}
+
+.section-block {
+  background: var(--white);
+  border-radius: var(--radius2);
+  padding: 2rem 2.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(13,31,60,0.06);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 1.4rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--light);
+}
+
+.section-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.icon-navy  { background: var(--navy);   color: var(--gold2); }
+.icon-teal  { background: var(--teal);   color: #fff; }
+.icon-gold  { background: var(--gold);   color: #fff; }
+.icon-rose  { background: var(--rose);   color: #fff; }
+.icon-purple{ background: var(--purple); color: #fff; }
+
+.chapter-badge {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--gold2);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 30px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   INFO CARDS & BOXES
+========================================= */
+.info-card {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1rem;
+  border-right: 4px solid var(--teal);
+  transition: var(--transition);
+}
+.info-card:hover { transform: translateX(-3px); box-shadow: var(--shadow); }
+.info-card.gold-border { border-right-color: var(--gold); }
+.info-card.rose-border { border-right-color: var(--rose); }
+.info-card.purple-border { border-right-color: var(--purple); }
+.info-card.navy-border { border-right-color: var(--navy); }
+
+.info-card h4 { margin-bottom: 0.4rem; }
+
+.callout {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  margin: 1.2rem 0;
+}
+.callout p { color: rgba(255,255,255,0.88); margin-bottom: 0; }
+.callout h4 { color: var(--gold2); margin-bottom: 0.4rem; }
+
+.tip-box {
+  background: var(--teal3);
+  border-radius: var(--radius);
+  padding: 1rem 1.3rem;
+  margin: 1rem 0;
+  border-right: 4px solid var(--teal2);
+}
+.tip-box p { color: var(--teal); font-weight: 600; margin: 0; }
+
+.warning-box {
+  background: var(--rose2);
+  border-radius: var(--radius);
+  padding: 1rem 1.3rem;
+  margin: 1rem 0;
+  border-right: 4px solid var(--rose);
+}
+.warning-box p { color: var(--rose); font-weight: 600; margin: 0; }
+
+/* =========================================
+   GRID LAYOUTS
+========================================= */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+
+@media (max-width: 640px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .section-block { padding: 1.4rem 1.2rem; }
+}
+
+/* =========================================
+   TOGGLE / ACCORDION
+========================================= */
+.toggle-section { margin-bottom: 0.8rem; }
+
+.toggle-btn {
+  width: 100%;
+  text-align: right;
+  background: var(--light);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.95rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+  transition: var(--transition);
+}
+.toggle-btn:hover { background: var(--navy); color: var(--gold2); }
+.toggle-btn.open { background: var(--navy); color: var(--gold2); border-radius: var(--radius) var(--radius) 0 0; }
+
+.toggle-arrow {
+  font-size: 0.9rem;
+  transition: transform var(--transition);
+  color: var(--gold2);
+}
+.toggle-btn.open .toggle-arrow { transform: rotate(180deg); }
+
+.toggle-content {
+  display: none;
+  background: var(--white);
+  border: 1px solid var(--light);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 1.3rem 1.4rem;
+}
+.toggle-content.open { display: block; animation: slideDown 0.25s ease; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   NEXT / PREV NAVIGATION
+========================================= */
+.nav-arrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 0 0.2rem;
+}
+
+.arrow-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy);
+  color: var(--gold2);
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+.arrow-btn:hover { background: var(--navy2); transform: translateY(-2px); box-shadow: var(--shadow2); }
+.arrow-btn.disabled { opacity: 0.35; pointer-events: none; }
+.arrow-btn span { font-size: 1.2rem; }
+
+.page-indicator {
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   HOME PAGE – HERO
+========================================= */
+.hero {
+  background: linear-gradient(145deg, var(--navy) 0%, var(--navy2) 55%, var(--teal) 100%);
+  padding: 4.5rem 1.5rem 3.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(232,168,78,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -40px;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(18,160,138,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-label {
+  display: inline-block;
+  background: rgba(255,255,255,0.10);
+  color: var(--gold2);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(232,168,78,0.3);
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.hero h1 { color: #fff; margin-bottom: 0.8rem; }
+
+.hero-sub {
+  color: rgba(255,255,255,0.70);
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hero-meta-item span:first-child {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold2);
+}
+.hero-meta-item span:last-child {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* =========================================
+   HOME PAGE – NAV CARDS
+========================================= */
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  padding: 2.5rem 1.5rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.home-card {
+  background: var(--white);
+  border-radius: var(--radius2);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.home-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+.home-card:hover::before { transform: scaleX(1); }
+.home-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow2);
+  border-color: var(--teal3);
+}
+
+.home-card .card-emoji {
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.home-card h3 { color: var(--navy); margin-bottom: 0.4rem; }
+.home-card p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+.home-card .card-chapters {
+  display: inline-block;
+  margin-top: 0.8rem;
+  background: var(--light);
+  color: var(--navy);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+.home-intro {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.5rem 0;
+  text-align: center;
+  color: var(--text2);
+  font-size: 1.02rem;
+}
+
+/* =========================================
+   CHAPTER PAGE HEADER
+========================================= */
+.chapter-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+}
+.chapter-hero h1 { color: #fff; }
+.chapter-hero .ch-subtitle {
+  color: rgba(255,255,255,0.65);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Progress bar */
+.progress-bar-wrapper {
+  max-width: 860px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.2rem;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.progress-track {
+  height: 6px;
+  background: var(--light);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+/* =========================================
+   STAGES TABS
+========================================= */
+.stage-tabs {
+  display: flex;
+  gap: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--light);
+}
+
+.stage-tab {
+  flex: 1;
+  padding: 14px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--muted);
+  font-family: inherit;
+  transition: var(--transition);
+  border-left: 1px solid var(--light);
+  position: relative;
+}
+.stage-tab:last-child { border-left: none; }
+.stage-tab:hover { background: var(--light); color: var(--navy); }
+.stage-tab.active {
+  background: var(--navy);
+  color: var(--gold2);
+}
+
+.stage-content { display: none; }
+.stage-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+/* =========================================
+   GROWTH ASPECT CARDS
+========================================= */
+.growth-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+@media (max-width: 600px) { .growth-grid { grid-template-columns: 1fr; } }
+
+.growth-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--teal);
+  transition: var(--transition);
+}
+.growth-card:hover { transform: translateY(-3px); box-shadow: var(--shadow2); }
+.growth-card.gold-top  { border-top-color: var(--gold); }
+.growth-card.rose-top  { border-top-color: var(--rose); }
+.growth-card.navy-top  { border-top-color: var(--navy); }
+.growth-card.purple-top{ border-top-color: var(--purple); }
+
+.growth-card-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.7rem;
+}
+.growth-card-label .gc-icon { font-size: 1.3rem; }
+.growth-card-label h4 { margin: 0; font-size: 1rem; }
+
+.growth-card p { font-size: 0.9rem; color: var(--text2); line-height: 1.75; }
+
+/* =========================================
+   REVISION PAGE
+========================================= */
+.revision-hero {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--navy2) 100%);
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+}
+.revision-hero h1 { color: #fff; }
+.revision-hero p { color: rgba(255,255,255,0.72); }
+
+.definition-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 0.9rem;
+  box-shadow: var(--shadow);
+  border-right: 5px solid var(--teal);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.definition-card.gold-def { border-right-color: var(--gold); }
+.definition-card.rose-def { border-right-color: var(--rose); }
+
+.def-term {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--navy);
+  min-width: 120px;
+}
+.def-text { font-size: 0.92rem; color: var(--text2); line-height: 1.75; }
+
+.exam-tip {
+  background: linear-gradient(135deg, #fff8e1, #fffde7);
+  border: 1px solid #f9c94e;
+  border-radius: var(--radius);
+  padding: 1rem 1.3rem;
+  margin-bottom: 0.7rem;
+  position: relative;
+}
+.exam-tip::before {
+  content: '⚡';
+  font-size: 1.1rem;
+  margin-left: 6px;
+}
+.exam-tip strong { color: var(--navy); }
+.exam-tip p { margin: 0; font-size: 0.9rem; }
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+.summary-table th {
+  background: var(--navy);
+  color: var(--gold2);
+  padding: 10px 14px;
+  text-align: right;
+  font-weight: 700;
+}
+.summary-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--light);
+  color: var(--text2);
+}
+.summary-table tr:nth-child(even) td { background: var(--cream); }
+.summary-table tr:hover td { background: var(--teal3); }
+
+/* =========================================
+   PRINCIPLE LIST
+========================================= */
+.principle-list {
+  counter-reset: principle;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.principle-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 2px 10px rgba(13,31,60,0.07);
+  transition: var(--transition);
+}
+.principle-item:hover { transform: translateX(-3px); box-shadow: var(--shadow); }
+
+.principle-num {
+  counter-increment: principle;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background: var(--navy);
+  color: var(--gold2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.principle-text h4 { margin-bottom: 0.25rem; }
+.principle-text p { font-size: 0.9rem; margin: 0; }
+
+/* =========================================
+   METHOD CARDS
+========================================= */
+.method-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+  border-top: 3px solid var(--gold);
+}
+.method-card.teal-top { border-top-color: var(--teal); }
+.method-card.rose-top { border-top-color: var(--rose); }
+.method-card.navy-top { border-top-color: var(--navy); }
+.method-card.purple-top { border-top-color: var(--purple); }
+
+.method-card h4 { margin-bottom: 0.5rem; }
+
+.pro-con {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+@media (max-width: 480px) { .pro-con { grid-template-columns: 1fr; } }
+
+.pro-box, .con-box {
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+}
+.pro-box {
+  background: var(--teal3);
+  color: var(--teal);
+}
+.con-box {
+  background: var(--rose2);
+  color: var(--rose);
+}
+.pro-box strong, .con-box strong {
+  display: block;
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   MISCELLANEOUS
+========================================= */
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+  margin: 1.5rem 0;
+  border: none;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 82px;
+  left: 16px;
+  width: 44px;
+  height: 44px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: var(--shadow2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  z-index: 990;
+  opacity: 0;
+  pointer-events: none;
+}
+.scroll-top.visible { opacity: 1; pointer-events: all; }
+.scroll-top:hover { background: var(--navy); }
+
+@media (min-width: 768px) {
+  #bottomnav { display: none; }
+  body { padding-bottom: 0; }
+  .scroll-top { bottom: 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ==========================================
+     TOP NAVIGATION
+=========================================== -->
+<nav id="topnav" role="navigation" aria-label="القائمة الرئيسية">
+  <ul class="nav-links" role="list">
+    <li><button class="active" onclick="showPage('home',this)">🏠 الرئيسية</button></li>
+    <li><button onclick="showPage('ch1',this)">الفصل الأول</button></li>
+    <li><button onclick="showPage('ch2',this)">الفصل الثاني</button></li>
+    <li><button onclick="showPage('stages',this)">مراحل النمو</button></li>
+    <li><button onclick="showPage('revision',this)">المراجعة</button></li>
+  </ul>
+  <div class="nav-brand">علم نفس النمو</div>
+</nav>
+
+<!-- ==========================================
+     BOTTOM NAVIGATION (MOBILE)
+=========================================== -->
+<nav id="bottomnav" aria-label="القائمة السفلية">
+  <button class="bnav-item active" onclick="showPage('home',null,'home-bn')">
+    <div class="bnav-icon">🏠</div>الرئيسية
+  </button>
+  <button class="bnav-item" onclick="showPage('ch1',null,'ch1-bn')">
+    <div class="bnav-icon">📘</div>الفصل ١
+  </button>
+  <button class="bnav-item" onclick="showPage('ch2',null,'ch2-bn')">
+    <div class="bnav-icon">📗</div>الفصل ٢
+  </button>
+  <button class="bnav-item" onclick="showPage('stages',null,'stages-bn')">
+    <div class="bnav-icon">👶</div>المراحل
+  </button>
+  <button class="bnav-item" onclick="showPage('revision',null,'revision-bn')">
+    <div class="bnav-icon">📝</div>المراجعة
+  </button>
+</nav>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى">↑</button>
+
+<!-- ==========================================
+     PAGE: HOME
+=========================================== -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-label">الفرقة الأولى – تعليم أساسي</div>
+    <h1>علم نفس النمو</h1>
+    <p class="hero-sub">
+      دراسة شاملة ومنظمة لمراحل نمو الإنسان من الميلاد حتى النضج — مُصمَّمة لمساعدتك على الفهم العميق والتحضير الفعّال للامتحانات
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span>٢</span><span>فصلاً أساسياً</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>٣</span><span>مراحل نمو</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>٥</span><span>مناهج بحث</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>١٠</span><span>مبادئ للنمو</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="home-intro" style="padding-top:2rem;">
+    اختر الموضوع الذي تريد دراسته من البطاقات أدناه. كل قسم مُصمَّم ليقودك خطوة بخطوة من التعريفات الأساسية إلى التطبيقات والتفاصيل الدقيقة.
+  </p>
+
+  <div class="home-cards">
+
+    <div class="home-card" onclick="showPage('ch1')">
+      <span class="card-emoji">📘</span>
+      <h3>الفصل الأول</h3>
+      <p>تعريف علم النمو، مظاهره، التغيرات، الأهمية ومناهج البحث</p>
+      <span class="card-chapters">الفصل الأول</span>
+    </div>
+
+    <div class="home-card" onclick="showPage('ch2')">
+      <span class="card-emoji">📗</span>
+      <h3>الفصل الثاني</h3>
+      <p>مبادئ النمو الإنساني والعوامل المؤثرة فيه (الوراثة والبيئة)</p>
+      <span class="card-chapters">الفصل الثاني</span>
+    </div>
+
+    <div class="home-card" onclick="showPage('stages')">
+      <span class="card-emoji">👶</span>
+      <h3>مراحل النمو</h3>
+      <p>الطفولة المبكرة، الوسطى، والمتأخرة — النمو الجسمي والعقلي واللغوي والاجتماعي</p>
+      <span class="card-chapters">الفصول ٥ و٦ و٧</span>
+    </div>
+
+    <div class="home-card" onclick="showPage('revision')">
+      <span class="card-emoji">📝</span>
+      <h3>صفحة المراجعة</h3>
+      <p>تعريفات مختصرة، نقاط مهمة، جداول مقارنة، وأسئلة الامتحان</p>
+      <span class="card-chapters">مراجعة شاملة</span>
+    </div>
+
+  </div>
+
+</div><!-- end home -->
+
+
+<!-- ==========================================
+     PAGE: CHAPTER 1
+=========================================== -->
+<div id="page-ch1" class="page">
+
+  <div class="chapter-hero">
+    <span class="chapter-badge">الفصل الأول</span>
+    <h1>أساسيات علم نفس النمو</h1>
+    <p class="ch-subtitle">التعريف · المظاهر · التغيرات · الأهمية · مناهج البحث</p>
+  </div>
+
+  <div class="progress-bar-wrapper">
+    <div class="progress-label">
+      <span>تقدمك في الفصل</span>
+      <span id="ch1-progress-txt">٠٪</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="ch1-progress" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:2rem;">
+
+    <!-- SECTION 1: DEFINITION -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-navy">🔬</div>
+        <div>
+          <h2>تعريف علم نفس النمو</h2>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted);">التعريف الشامل والمفهوم الأساسي</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <h4>التعريف الجوهري</h4>
+        <p>
+          علم نفس النمو هو فرع من فروع علم النفس، يختص بدراسة <strong>نمو الإنسان منذ بدء تكوينه</strong> باتحاد الخلية الذكرية مع الخلية الأنثوية، وحتى وفاته. ويتضمن دراسة التغيرات الجسمية والعقلية والانفعالية والاجتماعية التي يمر بها الفرد في مختلف مراحل حياته.
+        </p>
+      </div>
+
+      <p>
+        يُتابع هذا العلم الإنسان منذ اتحاد الخلية المنوية بالبويضة، ثم يرصد نمو الجنين، والوليد، والرضيع، وطفل الحضانة، وطفل المدرسة، ثم المراهق، حتى يصل إلى مرحلة الرشد والشيخوخة. ويرى بعض علماء النفس أن الموت هو آخر مرحلة من مراحل النمو.
+      </p>
+
+      <div class="tip-box">
+        <p>💡 خلاصة التعريف: علم نفس النمو يدرس مراحل تطور الكائن الحي، والعوامل المؤثرة فيها، والخصائص العامة التي تميز كل مرحلة عن سابقتها.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2: ASPECTS OF GROWTH -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-teal">🌱</div>
+        <div>
+          <h2>مظاهر النمو</h2>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted);">الجوانب الأربعة الأساسية للنمو الإنساني</p>
+        </div>
+      </div>
+
+      <p>
+        يشتمل النمو بمعناه النفسي على التغيرات التي تطرأ على جوانب متعددة من شخصية الفرد. وتُصنَّف هذه التغيرات في أربعة مظاهر رئيسية مترابطة تترابط فيما بينها وتؤثر كل منها في الأخرى:
+      </p>
+
+      <div class="grid-2">
+
+        <div class="info-card">
+          <h4>🏃 النمو الجسمي</h4>
+          <p>
+            يشمل التغيرات التشريحية والفسيولوجية من حيث الطول والوزن والحجم والبنية العضلية والهيكلية. ويُعدّ هذا المظهر الأكثر وضوحاً وقابليةً للقياس المباشر.
+          </p>
+        </div>
+
+        <div class="info-card gold-border">
+          <h4>🧠 النمو العقلي</h4>
+          <p>
+            يشمل تطور القدرات المعرفية كالذكاء والتذكر والتخيل والتفكير والانتباه والإدراك، وكيف تتطور هذه العمليات من مرحلة الطفولة حتى الرشد.
+          </p>
+        </div>
+
+        <div class="info-card rose-border">
+          <h4>❤️ النمو الانفعالي</h4>
+          <p>
+            يشمل التغيرات في المشاعر والوجدانات، وكيفية تعامل الفرد مع انفعالاته كالخوف والحب والغضب والفرح، ومدى نضج الاستجابات الانفعالية مع التقدم في العمر.
+          </p>
+        </div>
+
+        <div class="info-card purple-border">
+          <h4>👥 النمو الاجتماعي</h4>
+          <p>
+            يشمل تطور قدرة الفرد على التفاعل مع الآخرين، واكتساب القيم والمعايير الاجتماعية، وتكوين العلاقات الاجتماعية بدءاً من الأسرة ووصولاً إلى المجتمع الواسع.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="callout" style="margin-top:1.2rem;">
+        <h4>⚠️ نقطة جوهرية</h4>
+        <p>
+          مظاهر النمو الأربعة ليست مستقلة عن بعضها، بل هي مترابطة ومتشابكة. فالطفل السليم جسمياً وحركياً يميل إلى الاستقرار الانفعالي وتكوين علاقات اجتماعية ناجحة، في حين يعاني الطفل المعاق من صعوبات حركية وانفعالية واجتماعية في آنٍ واحد.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION 3: CHANGES IN GROWTH -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-gold">🔄</div>
+        <div>
+          <h2>التغيرات في النمو</h2>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted);">الأنواع الخمسة للتغير التي يشهدها الكائن الحي</p>
+        </div>
+      </div>
+
+      <p>يتألف النمو من سلسلة من التغيرات المتنوعة التي تصيب ليس فقط الأعضاء المختلفة، بل وظائف هذه الأعضاء أيضاً. وفيما يلي أهم أنواع هذه التغيرات:</p>
+
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          ١. التغير في الحجم والأبعاد الطبيعية
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <p>
+            ويُقصد بذلك ما يحدث للكائن الناميٍّ من تغيُّر في الطول والعرض والحجم والوزن. وهذه الجوانب هي الأكثر وضوحاً بين جوانب التغير، إذ يلاحظها كل من يتعامل مع الطفل. مثال: طول الطفل في نهاية السنة الثالثة حوالي ٩٠ سم، ثم يزداد بمعدل ٦ إلى ٩ سم سنوياً.
+          </p>
+        </div>
+      </div>
+
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          ٢. التغير في كمية السلوك وسرعته
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <p>
+            كالتغير في سرعة الأداء كالمشي أو حل المسائل الحسابية، أو التغير في كمية الحصيلة اللغوية كعدد المفردات أو عدد الكلمات التي يمكن قراءتها في الدقيقة. فالطفل الصغير يمشي ببطء وتعثُّر، ثم يتحسن أداؤه تدريجياً مع النمو.
+          </p>
+        </div>
+      </div>
+
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          ٣. التغير في النسب
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <p>
+            يحدث التغير بنسب مختلفة في نواحي النمو المختلفة. فرأس الجنين مثلاً تبلغ نسبتها إلى جسمه ما يقرب من الثلث، لكنها عند الراشد لا تزيد عن سُبع الجسم. وكذلك تقل نسبة المخاوف عند الطفل في مرحلة الطفولة المتأخرة عنها في مرحلة الطفولة المبكرة.
+          </p>
+        </div>
+      </div>
+
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          ٤. ظهور صفات جديدة
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <p>
+            تظهر صفات جديدة للسلوك على طول مراحل النمو، مثل المشي والكلام وتناول الطعام بالأدوات، كما تظهر أعراض النمو الجنسي الأولية والثانوية في مرحلة البلوغ. هذه الصفات لم تكن موجودة من قبل ثم تنبثق مع اكتمال النضج البيولوجي.
+          </p>
+        </div>
+      </div>
+
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          ٥. اختفاء صفات قديمة
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <p>
+            مثل اختفاء خاصية الاتكال على الآخرين الواضحة في سلوك الطفل الصغير، وخاصية الالتصاق بالأم، واختفاء سلوك الحبو والمشي مستنداً، واختفاء الأسنان اللبنية لتحل محلها الأسنان الدائمة، وكذلك ضمور الغدة التيموسية والغدة الصنوبرية في سن البلوغ.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECTION 4: IMPORTANCE -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-rose">⭐</div>
+        <div>
+          <h2>أهمية دراسة علم نفس النمو</h2>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted);">الجوانب النظرية والتطبيقية</p>
+        </div>
+      </div>
+
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          أولاً: الأهمية النظرية
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <div class="info-card navy-border">
+            <h4>١. الكشف عن المقاييس المختلفة للنمو</h4>
+            <p>يمكّن الباحث من معرفة العلاقة بين العمر الزمني والطول أو الوزن، ومعرفة النمو البطيء والسريع والمتأخر في مختلف المراحل.</p>
+          </div>
+          <div class="info-card navy-border">
+            <h4>٢. فهم سيكولوجية العمليات العقلية</h4>
+            <p>كالتفكير والتذكر والتخيل، ومراحل تطور هذه العمليات من مرحلة الطفولة حتى الرشد، مما يساعد على تربية الأفراد تربيةً صحيحة.</p>
+          </div>
+          <div class="info-card navy-border">
+            <h4>٣. معرفة القوانين والنظريات</h4>
+            <p>التي تفسر نمو السلوك الإنساني بمختلف مظاهره الجسمية والعقلية والانفعالية والاجتماعية.</p>
+          </div>
+          <div class="info-card navy-border">
+            <h4>٤. وضع المعايير المختلفة للنمو النفسي</h4>
+            <p>في كل مرحلة من مراحله، وتقديم مفاهيم علم النفس التربوي كالقدرات والعمليات العقلية وشروط التعلم.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          ثانياً: الأهمية التطبيقية (بإيجاز)
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <div class="grid-2">
+            <div class="info-card">
+              <h4>👨‍👩‍👧 بالنسبة للآباء</h4>
+              <p>تعرّف مراحل النمو وخصائص كل مرحلة، وفهم الفروق الفردية بين الأبناء، وتيهئتهم نفسياً للتغيرات القادمة.</p>
+            </div>
+            <div class="info-card gold-border">
+              <h4>🏫 بالنسبة للمعلمين</h4>
+              <p>تحديد الأهداف التربوية وبناء المنهج، والقدرة على التعامل مع التلاميذ وفق خصائص كل مرحلة.</p>
+            </div>
+            <div class="info-card rose-border">
+              <h4>🤝 بالنسبة للأخصائيين</h4>
+              <p>فهم المشكلات الاجتماعية كالتأخر الدراسي والجناح وضعف التوافق، وتشخيصها ووضع خطط العلاج المناسبة.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECTION 5: RESEARCH METHODS -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-purple">🔭</div>
+        <div>
+          <h2>مناهج البحث في علم نفس النمو</h2>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted);">الطرق العلمية المستخدمة لدراسة ظواهر النمو</p>
+        </div>
+      </div>
+
+      <p>
+        الهدف الرئيسي من دراسة مناهج البحث هو الإحاطة بالطرق العلمية التي لجأ إليها الباحثون لدراسة مظاهر النمو في مراحل العمر المختلفة. وفيما يلي أهم هذه المناهج:
+      </p>
+
+      <!-- Method 1 -->
+      <div class="method-card teal-top">
+        <h4>🧪 أولاً: المنهج التجريبي</h4>
+        <p>
+          استعاره علم نفس النمو من العلوم الطبيعية والبيولوجية. وهو لا يكتفي بوصف الظاهرة، بل يحاول معرفة الأسباب التي تؤثر في الشكل الذي تتخذه الظاهرة. ويُعدّ هذا المنهج <span class="highlight">أهم وأدق مناهج البحث</span> لأنه الأقرب إلى الموضوعية، ويتيح للباحث السيطرة على العوامل المختلفة.
+        </p>
+        <p>تتضمن خطواته: <strong>تحديد المشكلة ← تحديد الهدف ← فرض الفروض ← إجراء التجربة ← التحليل الإحصائي ← مناقشة النتائج</strong></p>
+        <p>ويعتمد على ثلاثة متغيرات: <span class="term-badge">المستقل</span> الذي يُغيِّره الباحث، <span class="term-badge">التابع</span> الذي يتأثر بتغير المستقل، <span class="term-badge">الوسيط</span> الذي يحاول الباحث ضبطه وعزله.</p>
+        <div class="pro-con">
+          <div class="pro-box"><strong>المميزات</strong>الأكثر موضوعية، يتيح السيطرة على المتغيرات، يمكن تكرار التجربة.</div>
+          <div class="con-box"><strong>القيود</strong>لا يُطبَّق على بعض المشكلات لاعتبارات أخلاقية أو لاستحالة التغيير.</div>
+        </div>
+      </div>
+
+      <!-- Method 2 -->
+      <div class="method-card gold-top">
+        <h4>📊 ثانياً: المنهج الارتباطي</h4>
+        <p>
+          يُستخدم حين يتعذر إجراء التجربة لأسباب أخلاقية أو عملية. يعتمد على قياس متغيرين على الأقل ثم تحديد درجة العلاقة بينهما بمعامل الارتباط (r). فإذا ارتفع المتغير (أ) وارتفع معه (ب) فالعلاقة موجبة (+)، وإذا ارتفع (أ) وانخفض (ب) فالعلاقة سالبة (−).
+        </p>
+        <div class="tip-box">
+          <p>في البحوث النفسية: معامل ارتباط ٠.٦ أو أكثر مرتفع جداً، وبين ٠.٢ و٠.٦ ذو قيمة عملية ونظرية، وأقل من ٠.٢ يستدعي الحذر في التفسير.</p>
+        </div>
+      </div>
+
+      <!-- Method 3 -->
+      <div class="method-card navy-top">
+        <h4>📋 ثالثاً: المنهج الوصفي</h4>
+        <p>
+          يهدف إلى جمع أوصاف دقيقة علمية عن الظاهرة موضع الدراسة في وضعها الراهن. ومن أهم الطرائق المستخدمة فيه:
+        </p>
+
+        <div style="margin-top: 1rem;">
+          <div class="info-card">
+            <h4>الملاحظة العلمية</h4>
+            <p>رصد السلوك كما هو عليه في الواقع. وتشمل: المباشرة، وغير المباشرة، والداخلية (الاستبطان)، والعفوية، والمشاركة. كل نوع له مميزاته وعيوبه.</p>
+          </div>
+          <div class="info-card gold-border">
+            <h4>الطريقة الطولية (التتبعية)</h4>
+            <p>يتتبع الباحث تغيرات فرد أو مجموعة عبر فترة زمنية ممتدة (سنوات). مثالها الشهير: دراسة تيرمان التي تتبع نمو الأطفال المتفوقين لمدة ٣٠ عاماً. مميزاتها: الدقة والاستمرارية. عيوبها: تستغرق وقتاً طويلاً وتكاليف مرتفعة.</p>
+          </div>
+          <div class="info-card rose-border">
+            <h4>الطريقة المستعرضة (المقارنة)</h4>
+            <p>دراسة مجموعات من أعمار مختلفة في وقت واحد. مثلاً: دراسة أطفال بأعمار ٦ و٧ و٨ سنوات في آنٍ واحد. مميزاتها: توفير الوقت والمال. عيوبها: عدم استمرارية حلقات النمو المتصلة.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Method 4 -->
+      <div class="method-card rose-top">
+        <h4>🏥 رابعاً: المنهج الكلينيكي</h4>
+        <p>
+          هو المنهج التشخيصي الذي يعتمد عليه الأطباء والمعالجون النفسيون في معرفة أسباب الاضطراب النفسي ورسم خطة علاجه. يحتاج إلى إلمام دقيق بتاريخ حياة الطفل وظروف نموه وعلاقاته الاجتماعية وما مر به من إحباطات.
+        </p>
+        <div class="pro-con">
+          <div class="pro-box"><strong>المميزات</strong>يمد الباحث بمعلومات ذات قيمة لا يمكن الحصول عليها بالمنهج التجريبي.</div>
+          <div class="con-box"><strong>العيوب</strong>يحتاج أفراداً مدربين جيداً، ويفتقر إلى الدقة المتناهية لأنه لا يلجأ إلى الأساليب الإحصائية.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NAV ARROWS -->
+    <div class="nav-arrows">
+      <button class="arrow-btn disabled" onclick="">
+        <span>→</span> السابق
+      </button>
+      <span class="page-indicator">١ / ٤</span>
+      <button class="arrow-btn" onclick="showPage('ch2')">
+        التالي <span>←</span>
+      </button>
+    </div>
+
+  </div><!-- end container -->
+</div><!-- end ch1 -->
+
+
+<!-- ==========================================
+     PAGE: CHAPTER 2
+=========================================== -->
+<div id="page-ch2" class="page">
+
+  <div class="chapter-hero">
+    <span class="chapter-badge">الفصل الثاني</span>
+    <h1>مبادئ النمو الإنساني</h1>
+    <p class="ch-subtitle">مقدمة · مبادئ النمو · العوامل المؤثرة في النمو</p>
+  </div>
+
+  <div class="container" style="padding-top:2rem;">
+
+    <!-- INTRO -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-teal">📖</div>
+        <div>
+          <h2>مقدمة</h2>
+        </div>
+      </div>
+      <p>
+        يخضع النمو الإنساني منذ لحظة الإخصاب حتى الممات لتغيرات مستمرة؛ فهو ليس في حالة ثابتة بل يحدث له تطور وارتقاء خلال مراحله المتعاقبة. وقد أمكن من خلال الدراسات التي أُجريت في ميدان سيكولوجية النمو التوصل إلى قواعد عامة تمثّل مجموعة من القوانين والمبادئ التي يخضع لها النمو الإنساني.
+      </p>
+      <div class="callout">
+        <h4>لماذا نتعلم مبادئ النمو؟</h4>
+        <p>
+          معرفة مبادئ النمو تساعد الآباء والمربين والمسؤولين عن رعاية الطفولة على تكوين صورة واضحة عن مسار نمو الأطفال والمراهقين، إلى جانب تقييم مسار النمو بما يُمكّن من الوصول إلى أفضل استثمار ممكن لطاقاتهم النفسية والجسمية.
+        </p>
+      </div>
+    </div>
+
+    <!-- PRINCIPLES -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-navy">📐</div>
+        <div>
+          <h2>مبادئ النمو الإنساني</h2>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted);">القوانين العشرة التي يخضع لها النمو</p>
+        </div>
+      </div>
+
+      <ul class="principle-list">
+
+        <li class="principle-item">
+          <div class="principle-num">١</div>
+          <div class="principle-text">
+            <h4>النمو عملية مستمرة ومتصلة</h4>
+            <p>النمو عملية متصلة لا تتوقف منذ بدايتها (تكوين الزيجوت/الجنين) حتى نهايتها (تمام النضج). لا توجد ثغرات أو وقفات في عملية النمو، لكن قد يوجد نمو كامن (غير ظاهر) يسبق النمو الظاهر. مثال: الأسنان اللبنية تظهر في العام الأول رغم أن تكوينها بدأ في الشهر الخامس من عمر الجنين.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٢</div>
+          <div class="principle-text">
+            <h4>النمو الإنساني محدود البداية والنهاية</h4>
+            <p>بداية النمو تكون داخل الرحم عند التقاء الحيوان المنوي بالبويضة وتكوين البويضة الملقحة (الزيجوت)، وتتوقف عند الوصول إلى تمام مرحلة الرشد أي تمام النضج.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٣</div>
+          <div class="principle-text">
+            <h4>يحدث النمو وفق تتابع نمائي معين</h4>
+            <p>يحدث النمو وفق تتابع منظم يشترك فيه جميع الأطفال بصفة عامة. يتجلى هذا التتابع في نمو الطفل الصغير من مجرد رفع اليدين إلى الجلوس ثم الوقوف ثم المشي. التتابع ثابت، وإن اختلف الوقت بين فرد وآخر.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٤</div>
+          <div class="principle-text">
+            <h4>يسير النمو في مراحل متتابعة متمايزة</h4>
+            <p>لا يتم النمو بشكل عفوي بل يحدث بشكل منظم وفقاً لعدد من المراحل؛ كل مرحلة نتاج للمرحلة السابقة وتمهيد للمرحلة التالية لها. مراحل النمو وفق العمر الزمني تشمل: ما قبل الميلاد، المهد، الطفولة (مبكرة/وسطى/متأخرة)، المراهقة، الرشد، الشيخوخة.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٥</div>
+          <div class="principle-text">
+            <h4>يختلف معدل النمو باختلاف المرحلة العمرية</h4>
+            <p>توجد فترات يكون معدل النمو فيها سريعاً كالمرحلة الجنينية والعامين الأولين ومرحلة المراهقة، وفترات أخرى يكون فيها بطيئاً كمرحلة الطفولة بأكملها. والنمو الانفعالي يتسم بالحدة في الطفولة المبكرة ثم يهدأ تدريجياً.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٦</div>
+          <div class="principle-text">
+            <h4>النمو عملية متكاملة ومترابطة</h4>
+            <p>تتداخل جوانب النمو فيما بينها لدرجة يتعذر معها فهم أي مظهر دون فهم المظاهر الأخرى. النمو الجسمي يرتبط ارتباطاً وثيقاً بالنمو الانفعالي والاجتماعي، والطفل الناضج جسمياً يتسم سلوكه بالاستقرار الانفعالي وتكوين علاقات اجتماعية ناجحة.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٧</div>
+          <div class="principle-text">
+            <h4>يتقدم النمو من البسيط إلى المعقد ومن العام إلى الخاص</h4>
+            <p>من الناحية الجسمية: الفرد يبدأ في صورة خلية واحدة (الزيجوت) ثم تنمو بالانقسام والتخصص. من الناحية الحركية: الرضيع يُحرك جسمه كله بدلاً من أن يحرك يداً واحدة. من الناحية اللغوية: الطفل يستخدم كلمة "بابا" للإشارة إلى أي رجل، ثم يخصصها لوالده فقط.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٨</div>
+          <div class="principle-text">
+            <h4>يخضع النمو لمجموعة من الشروط الداخلية والخارجية</h4>
+            <p>يخضع الفرد في نموه لشروط داخلية تتمثل في الاستعدادات الوراثية التي تحدد نقطة الانطلاق لمظاهر النمو المختلفة، وشروط خارجية تتمثل في تفاعله مع البيئات الثلاث: البيولوجية (الرحم)، والجغرافية الطبيعية، والاجتماعية الثقافية.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">٩</div>
+          <div class="principle-text">
+            <h4>يخضع النمو لمبدأ الفروق الفردية</h4>
+            <p>تنشأ الفروق الفردية من تفاعل الظروف الداخلية والخارجية المختلفة. وغالباً ما تتوزع سمات الأفراد المختلفة الجسمية والعقلية والانفعالية والاجتماعية وفق منحنى الاعتدال الطبيعي.</p>
+          </div>
+        </li>
+
+        <li class="principle-item">
+          <div class="principle-num">١٠</div>
+          <div class="principle-text">
+            <h4>يخضع النمو لمبدأ الفروق بين الجنسين</h4>
+            <p>توجد اختلافات بين الذكور والإناث في مظاهر النمو تقريباً. فالذكور يميلون إلى الطول وضخامة الحجم قياساً للإناث، إلا في سن ١٠-١٣ سنة حيث تسبق البنات الأولاد في النمو الجسمي لوصولهن إلى البلوغ مبكراً. وفي النمو العقلي: حظ البنات أفضل في القدرات اللغوية والفنية، وحظ البنين أفضل في القدرات الرياضية والميكانيكية.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- FACTORS AFFECTING GROWTH -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-gold">⚡</div>
+        <div>
+          <h2>العوامل المؤثرة في النمو</h2>
+          <p style="margin:0;font-size:0.88rem;color:var(--muted);">الوراثة والبيئة — محددات النمو الأساسية</p>
+        </div>
+      </div>
+
+      <!-- HEREDITY -->
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          أولاً: الوراثة (Heredity)
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <p>
+            الوراثة هي انتقال السمات أو الخصائص من الوالدين إلى أولادهما، وذلك عن طريق <span class="highlight">الجينات (المورثات)</span> التي تحملها <span class="highlight">الكروموسومات</span> الموجودة في البويضة المخصبة بعد عملية الإخصاب.
+          </p>
+
+          <div class="callout">
+            <h4>آلية الوراثة</h4>
+            <p>تحتوي نواة البويضة على ٢٣ كروموسوم، وكذلك نواة الحيوان المنوي. فعند الإخصاب تحتوي البويضة الملقحة على ٤٦ كروموسوم. اثنان وعشرون زوجاً منها تختص بتحديد الصفات الوراثية، والزوج المتبقي يحدد جنس الوليد. البويضة دائماً تحمل كروموسوم (X)، أما الحيوانات المنوية فنصفها يحمل (X) ونصفها يحمل (Y). إذا لقحت بحيوان منوي يحمل (Y) كان المولود ذكراً، وإذا لقحت بـ(X) كانت أنثى. وهكذا يتضح أن جنس الوليد يُورَّث عن طريق الأب وليس الأم.</p>
+          </div>
+
+          <div class="info-card">
+            <h4>صفات تتحدد بالوراثة</h4>
+            <p>لون العينين والشعر ونوعه، ومظهر الوجه، وشكل وحجم الجسم، وبعض الأمراض كمرض السكري وضعف العقل والهيموفيليا. وتزداد الأمراض الوراثية في حالة زواج الأقارب.</p>
+          </div>
+
+          <div class="info-card gold-border">
+            <h4>وظائف الوراثة</h4>
+            <p>تحسين صفات الأبناء والأحفاد عن طريق التزاوج بين الأصحاء ذوي الصفات الممتازة، والمحافظة على الصفات العامة للنوع بنقلها من جيل إلى آخر، والحفاظ على الحياة الوسطى المتسقة (ظاهرة الانحدار التي اكتشفها غالتون).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENVIRONMENT -->
+      <div class="toggle-section">
+        <button class="toggle-btn" onclick="toggleSection(this)">
+          ثانياً: العوامل البيئية
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="toggle-content">
+          <p>
+            يُقصد بالعوامل البيئية أربع حلقات من البيئة تتفاعل مؤثراتها وتتداخل بصورة يصعب الفصل بينها:
+          </p>
+
+          <div class="info-card navy-border">
+            <h4>أ. البيئة البيولوجية (الرحم)</h4>
+            <p>البويضة المخصبة تنمو وتنقسم داخل الرحم. وتتأثر بعوامل عديدة منها: غذاء الأم (يجب أن يكون كاملاً متنوعاً)، الحالة الصحية للأم (الإصابة بالزهر تؤدي إلى ضعف عقلي أو صمم أو عمى)، الحالة النفسية للأم (الخوف والتوتر يؤثران على الجنين بطريقة غير مباشرة)، عمر الأم (الأنسب ٢٠-٣٥ سنة)، عامل ريزيس، التعرض للإشعاع، التدخين، تعاطي الخمور والمخدرات، تناول بعض الأدوية.</p>
+          </div>
+
+          <div class="info-card gold-border">
+            <h4>ب. البيئة الجغرافية أو الطبيعية</h4>
+            <p>عوامل الطقس والمناخ التي تحدد حياة الناس وأنشطتهم. فأطفال السواحل والريف ينمون أسرع من أطفال المدن الصناعية المزدحمة المعرضة لتلوث البيئة.</p>
+          </div>
+
+          <div class="info-card teal-border" style="border-right-color:var(--teal);">
+            <h4>ج. البيئة الاجتماعية</h4>
+            <p>الوسائط التربوية التي تمارس تأثيرها على نمو الفرد من خلال التنشئة الاجتماعية. وتشمل: الأسرة (حجمها واستقرار الوسط العائلي)، والمدرسة، والمسجد، ووسائل الإعلام.</p>
+          </div>
+
+          <div class="info-card rose-border">
+            <h4>د. البيئة الثقافية</h4>
+            <p>تأثير الثقافة السائدة في المجتمع على نمو الشخصية وتشكيل الاتجاهات والقيم الاجتماعية. أوضح علماء علم الإنسان (Anthropology) أهمية تأثير الثقافة الفرعية (الإقليمية) داخل الثقافة الواحدة على النمو.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NAV ARROWS -->
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="showPage('ch1')">
+        <span>→</span> السابق
+      </button>
+      <span class="page-indicator">٢ / ٤</span>
+      <button class="arrow-btn" onclick="showPage('stages')">
+        التالي <span>←</span>
+      </button>
+    </div>
+
+  </div>
+</div><!-- end ch2 -->
+
+
+<!-- ==========================================
+     PAGE: GROWTH STAGES
+=========================================== -->
+<div id="page-stages" class="page">
+
+  <div class="chapter-hero">
+    <span class="chapter-badge">الفصول ٥ · ٦ · ٧</span>
+    <h1>مراحل النمو في الطفولة</h1>
+    <p class="ch-subtitle">الطفولة المبكرة · الوسطى · المتأخرة</p>
+  </div>
+
+  <div class="container" style="padding-top:2rem;">
+
+    <!-- STAGE SELECTOR TABS -->
+    <div class="stage-tabs">
+      <button class="stage-tab active" onclick="showStage('early',this)">👶 المبكرة<br><small style="font-weight:400;font-size:0.72rem;">٣ – ٦ سنوات</small></button>
+      <button class="stage-tab" onclick="showStage('middle',this)">🧒 الوسطى<br><small style="font-weight:400;font-size:0.72rem;">٦ – ٩ سنوات</small></button>
+      <button class="stage-tab" onclick="showStage('late',this)">🧑 المتأخرة<br><small style="font-weight:400;font-size:0.72rem;">٩ – ١٢ سنوات</small></button>
+    </div>
+
+    <!-- ========== EARLY CHILDHOOD ========== -->
+    <div class="stage-content active" id="stage-early">
+
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-icon icon-teal">👶</div>
+          <div>
+            <h2>الطفولة المبكرة (٣ – ٦ سنوات)</h2>
+            <p style="margin:0;font-size:0.88rem;color:var(--muted);">مرحلة ما قبل المدرسة – Early Childhood</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <h4>نظرة عامة على المرحلة</h4>
+          <p>تمتد من نهاية مرحلة الرضاعة حتى دخول المدرسة، وتستقبلها دور الحضانة ورياض الأطفال. يمثّل أطفال هذه المرحلة حوالي ١٦٪ من تعداد السكان. يكون نمو الشخصية فيها سريعاً، ولذلك فهناك الكثير على الطفل أن يتعلمه. تتميز بـ: استمرار النمو بسرعة، والنمو السريع في اللغة، وبداية التنمي الجنسي، والتوحد مع نماذج الوالدين، وتكوين المفاهيم الاجتماعية، وبدء نمو الضمير والتفرقة بين الصواب والخطأ.</p>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h3 style="margin-bottom:1rem;">🔍 مظاهر النمو التفصيلية</h3>
+
+        <div class="growth-grid">
+
+          <div class="growth-card">
+            <div class="growth-card-label">
+              <span class="gc-icon">🏃</span>
+              <h4>النمو الجسمي</h4>
+            </div>
+            <p>تستمر الأسنان في الظهور ويكتمل عدد الأسنان المؤقتة ويبدأ تساقطها في السادسة. ينمو الرأس ببطء ويصل في نهاية المرحلة إلى حجم رأس الراشد تقريباً. الطول في نهاية السنة الثالثة حوالي ٩٠ سم، ثم يزداد بمعدل ٦-٩ سم سنوياً. الوزن يزداد بمعدل كيلوجرام واحد تقريباً في السنة. يزداد نضج العظام والعضلات. الذكور أكثر وزناً بدرجة طفيفة من الإناث، لكن الإناث أكثر حظاً من الأنسجة الشحمية.</p>
+          </div>
+
+          <div class="growth-card gold-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">🧠</span>
+              <h4>النمو العقلي</h4>
+            </div>
+            <p>تُسمى هذه المرحلة <strong>مرحلة السؤال</strong>؛ فالطفل عبارة عن علامة استفهام حية ("ماذا؟ لماذا؟ متى؟ أين؟"). يتسم التفكير بالذاتية ويدور حول نفسه. يتكون مفهوم الزمن والمكان والعدد تدريجياً. اللعب الإيهامي والخيالي يميز هذه المرحلة. الحافظة تتطور: في سن ٢.٥ يتذكر رقمين، في سن ٣ يتذكر ثلاثة، وفي سن ٤.٥ يتذكر أربعة أرقام. قراءة الروضة للطفل ورعايته فيها أفضل للنمو العقلي من بقائه في المنزل.</p>
+          </div>
+
+          <div class="growth-card rose-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">💬</span>
+              <h4>النمو اللغوي</h4>
+            </div>
+            <p>النمو اللغوي في هذه المرحلة من أبرز مظاهرها. في سن الثالثة يستخدم الطفل جملاً قصيرة. بحلول الخامسة تصبح لغته أكثر تعقيداً ويستخدم الأفعال والأسماء بشكل جيد. يبدأ الطفل باستخدام كلمة "بابا" للإشارة إلى أي رجل، ثم مع النمو يخصصها لوالده فقط — وهذا مثال رائع على التطور من العام إلى الخاص. أسئلة الطفل الكثيرة أداة جوهرية لاكتساب اللغة والمعرفة.</p>
+          </div>
+
+          <div class="growth-card navy-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">👥</span>
+              <h4>النمو الاجتماعي</h4>
+            </div>
+            <p>يكون الطفل في بداية حياته لصيقاً بأسرته. يبدأ بتكوين علاقات اجتماعية مع المحيطين به خارج الأسرة تدريجياً. يتوحد مع نماذج الوالدين. يبدأ في التمييز بين الصواب والخطأ وتكوين الضمير (الأنا الأعلى). اللعب في هذه المرحلة فردي في جملته لكنه يتحول تدريجياً إلى لعب جماعي. اللعب التعاوني يساعد على النمو الاجتماعي السليم.</p>
+          </div>
+
+          <div class="growth-card purple-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">❤️</span>
+              <h4>النمو الانفعالي</h4>
+            </div>
+            <p>الانفعالات في هذه المرحلة جياشة ومتقلبة؛ يتحول الطفل بسهولة من أقصى حالات البهجة إلى أقصى الانقباض والخوف. يُعبّر عن انفعالاته بحركات جسمية تعبيرية فطرية (بكاء، احتقان، صراخ). يكتسب تدريجياً القدرة على ضبط انفعالاته. الأسلوب الذي يتبعه الوالدان في التعامل مع الطفل يؤثر تأثيراً عميقاً على استقراره الانفعالي.</p>
+          </div>
+
+          <div class="growth-card">
+            <div class="growth-card-label">
+              <span class="gc-icon">🏃‍♂️</span>
+              <h4>النمو الحركي</h4>
+            </div>
+            <p>هذه المرحلة هي مرحلة النشاط الحركي المستمر. حركات الطفل تتميز بالشدة وسرعة الاستجابة والتنوع. يكاد النمو الحركي في أول المرحلة ينحصر في العضلات الكبيرة. ثم تدريجياً يسيطر على عضلاته الصغيرة. يكتسب مهارات كالجري والقفز والتسلق وركوب الدراجة. في نهاية المرحلة يُفضّل استخدام يد واحدة بشكل نهائي (٩٥٪ يستخدمون اليد اليمنى).</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- end stage-early -->
+
+    <!-- ========== MIDDLE CHILDHOOD ========== -->
+    <div class="stage-content" id="stage-middle">
+
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-icon icon-gold">🧒</div>
+          <div>
+            <h2>الطفولة الوسطى (٦ – ٩ سنوات)</h2>
+            <p style="margin:0;font-size:0.88rem;color:var(--muted);">السنوات الأولى من الدراسة – Middle Childhood</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <h4>نظرة عامة على المرحلة</h4>
+          <p>تمتد من نهاية سن السادسة حتى نهاية سن التاسعة، وتوافق الصفوف الثلاثة الأولى من التعليم الابتدائي. يتسم الطفل في هذه المرحلة بالانتقال من دائرة الأسرة الضيقة إلى دائرة المجتمع الأوسع والمدرسة. يصبح رأي جماعة الأقران أكثر أهمية. تقل الأنانية تدريجياً، ويميل الطفل إلى التعاون.</p>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h3 style="margin-bottom:1rem;">🔍 مظاهر النمو التفصيلية</h3>
+
+        <div class="growth-grid">
+
+          <div class="growth-card">
+            <div class="growth-card-label">
+              <span class="gc-icon">🏃</span>
+              <h4>النمو الجسمي</h4>
+            </div>
+            <p>يتراوح الطول بين ١١٥ و١٣٥ سم تقريباً. يزداد الوزن بمعدل ٢-٣ كيلوجرام سنوياً. تكتمل الأسنان الدائمة تدريجياً محل الأسنان اللبنية. يزداد نضج الهيكل العظمي ويزداد حجم العضلات. النمو الجسمي أهدأ مما كان في مرحلة الطفولة المبكرة، ويتسم بالثبات النسبي والاتزان. يتسم الوضع الجسمي بالانتصاب وتختفي نتوء البطن الواضحة في المرحلة السابقة.</p>
+          </div>
+
+          <div class="growth-card gold-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">🧠</span>
+              <h4>النمو العقلي</h4>
+            </div>
+            <p>تبدأ مرحلة العمليات المنطقية الحسية (وفق نظرية بياجيه). يكتسب مفهوم الحفاظ على الكميات (Conservation). تتحسن القدرة على التصنيف والترتيب. يستطيع الطفل التفكير في الأشياء الغائبة وفهم علاقات السبب والنتيجة. تتحسن قدرة التذكر والانتباه. تتطور القدرة على حل المسائل الرياضية البسيطة. يكون التفكير ما زال مقيداً بالعالم المحسوس وليس التجريدي.</p>
+          </div>
+
+          <div class="growth-card rose-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">💬</span>
+              <h4>النمو اللغوي</h4>
+            </div>
+            <p>تنمو الثروة اللغوية نمواً ملحوظاً. يستطيع الطفل استخدام جمل طويلة ومعقدة. يبدأ تعلم القراءة والكتابة بشكل رسمي. تتوسع القدرة على سرد القصص ووصف الأحداث. يميل إلى استخدام اللغة وسيلة للتواصل الاجتماعي مع الأقران. تراجع الكلمات المصطنعة والمصغّرة. يبدأ فهم الكنايات والمجاز اللغوي البسيط.</p>
+          </div>
+
+          <div class="growth-card navy-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">👥</span>
+              <h4>النمو الاجتماعي</h4>
+            </div>
+            <p>تتسع دائرة العلاقات الاجتماعية خارج الأسرة. تصبح المدرسة المحور الاجتماعي الرئيسي. يبدأ الانتماء لجماعات صغيرة من الأقران. يُفضَّل التعامل مع نفس الجنس عادةً. يتعلم التعاون في الألعاب والنشاطات الجماعية. يكتسب معايير السلوك الاجتماعي المقبول من مجموعة أصدقائه. يتراجع التمركز حول الذات.</p>
+          </div>
+
+          <div class="growth-card purple-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">❤️</span>
+              <h4>النمو الانفعالي</h4>
+            </div>
+            <p>تهدأ حدة الانفعالات التي كانت تميز مرحلة الطفولة المبكرة. يكتسب الطفل قدراً من السيطرة على تعبيره الانفعالي. ينمو شعور الفخر بالإنجاز والخجل من الفشل. تصبح مخاوفه أكثر واقعية (الخوف من الرسوب، من الإصابة). يتطور الشعور بالتعاطف مع الآخرين. الاستقرار الانفعالي شرط لنجاح التعلم المدرسي.</p>
+          </div>
+
+          <div class="growth-card">
+            <div class="growth-card-label">
+              <span class="gc-icon">🏃‍♂️</span>
+              <h4>النمو الحركي</h4>
+            </div>
+            <p>تتحسن مهارة التوازن والتنسيق العضلي الدقيق. يجيد الطفل الأنشطة التي تتطلب تآزراً حركياً كالكتابة والرسم. يستطيع ممارسة الألعاب الرياضية التي تتطلب مهارات حركية دقيقة. يزداد الاهتمام بالألعاب الجماعية المنظمة كالكرة. تتحسن قدرة الطفل على التعلم الحركي من خلال التقليد والممارسة.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- end stage-middle -->
+
+    <!-- ========== LATE CHILDHOOD ========== -->
+    <div class="stage-content" id="stage-late">
+
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-icon icon-rose">🧑</div>
+          <div>
+            <h2>الطفولة المتأخرة (٩ – ١٢ سنة)</h2>
+            <p style="margin:0;font-size:0.88rem;color:var(--muted);">ذروة الطفولة وبداية التغيير – Late Childhood</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <h4>نظرة عامة على المرحلة</h4>
+          <p>تمتد من نهاية سن التاسعة حتى نهاية سن الثانية عشرة. تُشكّل المرحلة الانتقالية بين الطفولة والمراهقة. يزداد اهتمام الطفل بجماعة الأقران بشكل ملحوظ، وتصبح الجماعة المرجع الرئيسي لسلوكه. يبدأ الوعي بالهوية الجنسية يتبلور، وتظهر علامات البلوغ المبكرة لدى البعض خاصةً الإناث.</p>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h3 style="margin-bottom:1rem;">🔍 مظاهر النمو التفصيلية</h3>
+
+        <div class="growth-grid">
+
+          <div class="growth-card">
+            <div class="growth-card-label">
+              <span class="gc-icon">🏃</span>
+              <h4>النمو الجسمي</h4>
+            </div>
+            <p>يكون النمو الجسمي عادةً هادئاً ومتدرجاً في مرحلة الطفولة المتأخرة. الطول يزداد تدريجياً. تبدأ الإناث في التقدم على الذكور في النمو الجسمي في سن ١٠-١٣ سنة استعداداً للبلوغ المبكر. تشتد العضلات وتكتسب مزيداً من القوة. تتفاوت المظاهر الجسمية بشكل واضح بين الأفراد تبعاً للوراثة والتغذية.</p>
+          </div>
+
+          <div class="growth-card gold-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">🧠</span>
+              <h4>النمو العقلي</h4>
+            </div>
+            <p>تتسع القدرة على التفكير المنطقي وفهم العلاقات المجردة (تدريجياً). يستطيع الطفل استيعاب المفاهيم الرياضية الأعقد. تتطور مهارات الاستنتاج والتحليل. تتحسن القدرة على التخطيط وحل المشكلات. يبدأ الاهتمام بمجالات معرفية محددة تعكس ميوله. الذكاء في هذه المرحلة يصبح أكثر ثباتاً وقابلية للتنبؤ مقارنة بالمراحل السابقة.</p>
+          </div>
+
+          <div class="growth-card rose-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">💬</span>
+              <h4>النمو اللغوي</h4>
+            </div>
+            <p>تتسع الثروة اللغوية اتساعاً ملحوظاً وتصبح اللغة أداةً معرفية واجتماعية أكثر تطوراً. يُتقن القراءة والكتابة ويُحسن التعبير الكتابي. يفهم الدلالات الضمنية والكنايات والتشابيه المعقدة. يتطور الاهتمام بالقراءة الحرة واكتساب المعرفة الذاتية من خلالها. تبرز الفروق الفردية في مستوى اللغة بوضوح.</p>
+          </div>
+
+          <div class="growth-card navy-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">👥</span>
+              <h4>النمو الاجتماعي</h4>
+            </div>
+            <p>تبلغ أهمية جماعة الأقران ذروتها في هذه المرحلة. ولاء الطفل لجماعته يتفوق أحياناً على ولائه لأسرته. يتعلم قواعد المنافسة والتعاون ضمن الجماعة. يُولي أهمية بالغة لمعايير الجماعة في الملبس والسلوك والاهتمامات. يبدأ ظهور "العصابات" غير الرسمية من الأصدقاء ذوي الاهتمامات المشتركة. يتطور الشعور بالانتماء والهوية الجمعية.</p>
+          </div>
+
+          <div class="growth-card purple-top">
+            <div class="growth-card-label">
+              <span class="gc-icon">❤️</span>
+              <h4>النمو الانفعالي</h4>
+            </div>
+            <p>يتعلم الطفل إخفاء انفعالاته أو التحكم فيها بشكل أفضل مما كان عليه في المراحل السابقة. يتطور الإحساس بالعدالة والإنصاف وعدم المحاباة. ينشأ الإحساس بالقلق من الفشل الأكاديمي أو الاجتماعي. قد تظهر أزمات هوية خفيفة مع اقتراب البلوغ. الاستقرار الانفعالي يصبح أكثر نسبياً لكن قد تعصف به تقلبات مرحلة البلوغ.</p>
+          </div>
+
+          <div class="growth-card">
+            <div class="growth-card-label">
+              <span class="gc-icon">🏃‍♂️</span>
+              <h4>النمو الحركي</h4>
+            </div>
+            <p>تبلغ المهارات الحركية الكبرى ذروتها من حيث الكفاءة والإتقان. يُتقن الطفل الرياضات المنظمة التي تتطلب مهارات معقدة. تتحسن المهارات الحركية الدقيقة كالكتابة والرسم التفصيلي والحرف اليدوية. يتسم الأداء الحركي بالتوازن والانسجام والكفاءة. الفروق الحركية بين الجنسين تبدأ بالوضوح أكثر مع اقتراب البلوغ.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- end stage-late -->
+
+    <!-- COMPARISON TABLE -->
+    <div class="section-block" style="margin-top:1rem;">
+      <div class="section-header">
+        <div class="section-icon icon-navy">📊</div>
+        <div>
+          <h2>جدول مقارنة مراحل الطفولة</h2>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>المظهر</th>
+              <th>المبكرة (٣-٦)</th>
+              <th>الوسطى (٦-٩)</th>
+              <th>المتأخرة (٩-١٢)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>الجسمي</strong></td>
+              <td>نمو متوسط، عضلات كبيرة</td>
+              <td>هادئ ومستقر</td>
+              <td>الإناث تسبق الذكور</td>
+            </tr>
+            <tr>
+              <td><strong>العقلي</strong></td>
+              <td>مرحلة السؤال، خيال واسع</td>
+              <td>منطق حسي، تصنيف</td>
+              <td>بداية التجريد، تخطيط</td>
+            </tr>
+            <tr>
+              <td><strong>اللغوي</strong></td>
+              <td>نمو سريع جداً، جمل بسيطة</td>
+              <td>قراءة وكتابة رسمية</td>
+              <td>إتقان، فهم المجاز</td>
+            </tr>
+            <tr>
+              <td><strong>الاجتماعي</strong></td>
+              <td>لعب فردي/عائلي</td>
+              <td>بدء الانتماء للأقران</td>
+              <td>ولاء قوي للجماعة</td>
+            </tr>
+            <tr>
+              <td><strong>الانفعالي</strong></td>
+              <td>جياش ومتقلب</td>
+              <td>أهدأ، فخر بالإنجاز</td>
+              <td>إخفاء الانفعالات، قلق</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NAV ARROWS -->
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="showPage('ch2')">
+        <span>→</span> السابق
+      </button>
+      <span class="page-indicator">٣ / ٤</span>
+      <button class="arrow-btn" onclick="showPage('revision')">
+        التالي <span>←</span>
+      </button>
+    </div>
+
+  </div>
+</div><!-- end stages -->
+
+
+<!-- ==========================================
+     PAGE: REVISION
+=========================================== -->
+<div id="page-revision" class="page">
+
+  <div class="revision-hero">
+    <h1>📝 صفحة المراجعة</h1>
+    <p>تعريفات مختصرة · نقاط مهمة · أسئلة الامتحان · جداول المقارنة</p>
+  </div>
+
+  <div class="container" style="padding-top:2rem;">
+
+    <!-- KEY DEFINITIONS -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-teal">📖</div>
+        <h2>التعريفات الجوهرية</h2>
+      </div>
+
+      <div class="definition-card">
+        <div class="def-term">علم نفس النمو</div>
+        <div class="def-text">فرع من فروع علم النفس يختص بدراسة نمو الإنسان منذ الإخصاب حتى الوفاة، شاملاً جميع التغيرات الجسمية والعقلية والانفعالية والاجتماعية في مختلف المراحل.</div>
+      </div>
+
+      <div class="definition-card gold-def">
+        <div class="def-term">النمو</div>
+        <div class="def-text">التغير الذي يطرأ مع مرور فترة زمنية معينة على أحد جوانب الكائن الحي، سواء كان ذلك متعلقاً ببنائه التشريحي أو تكوينه البيولوجي أو وظائفه الفسيولوجية أو نشاطه في البيئة.</div>
+      </div>
+
+      <div class="definition-card rose-def">
+        <div class="def-term">الوراثة</div>
+        <div class="def-text">انتقال السمات والخصائص من الوالدين إلى أولادهما عن طريق الجينات (المورثات) التي تحملها الكروموسومات الموجودة في البويضة المخصبة.</div>
+      </div>
+
+      <div class="definition-card">
+        <div class="def-term">المنهج التجريبي</div>
+        <div class="def-text">منهج لا يكتفي بوصف الظاهرة، بل يحاول معرفة أسبابها عن طريق التحكم في المتغيرات وإجراء التجارب المنظمة. يُعدّ أهم وأدق مناهج البحث.</div>
+      </div>
+
+      <div class="definition-card gold-def">
+        <div class="def-term">معامل الارتباط</div>
+        <div class="def-text">أسلوب إحصائي يُحدَّد به درجة العلاقة بين متغيرين. يتراوح بين (−١) و(+١)، وكلما اقترب من الواحد الصحيح دلّ على قوة العلاقة.</div>
+      </div>
+
+      <div class="definition-card rose-def">
+        <div class="def-term">المنهج الكلينيكي</div>
+        <div class="def-text">المنهج التشخيصي الذي يعتمد عليه الأطباء والمعالجون النفسيون في معرفة أسباب الاضطراب النفسي ورسم خطة علاجه بناءً على تاريخ حياة الفرد الكامل.</div>
+      </div>
+
+    </div>
+
+    <!-- EXAM FOCUS TIPS -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-gold">⚡</div>
+        <h2>نقاط مهمة للامتحان</h2>
+      </div>
+
+      <div class="exam-tip">
+        <strong>مظاهر النمو الأربعة:</strong>
+        <p>جسمي ← عقلي ← انفعالي ← اجتماعي. تذكّر أنها مترابطة ومتداخلة وليست منفصلة.</p>
+      </div>
+
+      <div class="exam-tip">
+        <strong>التغيرات الخمسة في النمو:</strong>
+        <p>في الحجم ← في كمية السلوك ← في النسب ← ظهور صفات جديدة ← اختفاء صفات قديمة.</p>
+      </div>
+
+      <div class="exam-tip">
+        <strong>الفرق بين الطريقة الطولية والمستعرضة:</strong>
+        <p>الطولية تتتبع نفس الأفراد عبر الزمن (دقيقة لكن مكلفة). المستعرضة تدرس مجموعات بأعمار مختلفة في وقت واحد (سريعة لكن تفقد الاستمرارية).</p>
+      </div>
+
+      <div class="exam-tip">
+        <strong>تحديد الجنس بالوراثة:</strong>
+        <p>البويضة تحمل دائماً (X)، الحيوان المنوي يحمل إما (X) أو (Y). إذا لقّح (Y) = ذكر، إذا لقّح (X) = أنثى. جنس الوليد يتحدد من الأب لا من الأم.</p>
+      </div>
+
+      <div class="exam-tip">
+        <strong>مرحلة السؤال:</strong>
+        <p>الطفولة المبكرة (٣-٦ سنوات) تُسمى مرحلة السؤال لكثرة أسئلة الطفل: "ماذا؟ لماذا؟ متى؟ أين؟ كيف؟ من؟"</p>
+      </div>
+
+      <div class="exam-tip">
+        <strong>معامل الارتباط في البحوث النفسية:</strong>
+        <p>٠.٦ فأكثر = مرتفع جداً. بين ٠.٢ و٠.٦ = ذو قيمة عملية. أقل من ٠.٢ = يُحكم عليه بحذر.</p>
+      </div>
+
+      <div class="exam-tip">
+        <strong>أهم فارق في جماعة الأقران:</strong>
+        <p>في الطفولة الوسطى (٦-٩) تبدأ أهمية الأقران. في المتأخرة (٩-١٢) تبلغ ذروتها وقد يتفوق الولاء للجماعة على الولاء للأسرة.</p>
+      </div>
+
+      <div class="exam-tip">
+        <strong>نمو الإناث مقابل الذكور:</strong>
+        <p>في سن ١٠-١٣ سنة تسبق البنات الأولاد في النمو الجسمي لوصولهن إلى البلوغ مبكراً. البنات متفوقات في القدرات اللغوية والفنية، والبنون في القدرات الرياضية والميكانيكية.</p>
+      </div>
+
+    </div>
+
+    <!-- QUICK SUMMARY TABLE – RESEARCH METHODS -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-navy">📊</div>
+        <h2>جدول مقارنة مناهج البحث</h2>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>المنهج</th>
+              <th>الهدف</th>
+              <th>أبرز الميزات</th>
+              <th>أبرز العيوب</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>التجريبي</strong></td>
+              <td>معرفة الأسباب والعلاقات السببية</td>
+              <td>الأكثر موضوعية وأدق المناهج</td>
+              <td>قيود أخلاقية وعملية</td>
+            </tr>
+            <tr>
+              <td><strong>الارتباطي</strong></td>
+              <td>قياس درجة العلاقة بين متغيرين</td>
+              <td>يُفيد حين يتعذر التجريب</td>
+              <td>لا يثبت العلاقة السببية</td>
+            </tr>
+            <tr>
+              <td><strong>الوصفي – الملاحظة</strong></td>
+              <td>رصد السلوك كما هو في الواقع</td>
+              <td>مرونة وسهولة استخدام</td>
+              <td>احتمال تدخل أخطاء الذاكرة والتحيز</td>
+            </tr>
+            <tr>
+              <td><strong>الطولي (التتبعي)</strong></td>
+              <td>تتبع نفس الأفراد عبر الزمن</td>
+              <td>دقة واستمرارية وعمق</td>
+              <td>تكاليف عالية، يستغرق وقتاً طويلاً</td>
+            </tr>
+            <tr>
+              <td><strong>المستعرض (المقارن)</strong></td>
+              <td>مقارنة مجموعات بأعمار مختلفة</td>
+              <td>يوفر الوقت والجهد والمال</td>
+              <td>عدم استمرارية حلقات النمو</td>
+            </tr>
+            <tr>
+              <td><strong>الكلينيكي</strong></td>
+              <td>تشخيص الاضطراب النفسي وعلاجه</td>
+              <td>معلومات قيّمة لا تتوفر بغيره</td>
+              <td>يحتاج متخصصين، لا يلجأ للإحصاء</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PRINCIPLES SUMMARY -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-icon icon-teal">🗝️</div>
+        <h2>ملخص مبادئ النمو العشرة</h2>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>المبدأ</th>
+              <th>الكلمة المفتاحية</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>١</td><td>النمو عملية مستمرة ومتصلة</td><td>الاستمرار</td></tr>
+            <tr><td>٢</td><td>النمو محدود البداية والنهاية</td><td>الرحم ← الرشد</td></tr>
+            <tr><td>٣</td><td>يحدث النمو وفق تتابع منظم</td><td>التتابع الثابت</td></tr>
+            <tr><td>٤</td><td>يسير النمو في مراحل متتابعة متمايزة</td><td>المراحل</td></tr>
+            <tr><td>٥</td><td>معدل النمو يختلف باختلاف المرحلة</td><td>السرعة المتفاوتة</td></tr>
+            <tr><td>٦</td><td>النمو عملية متكاملة مترابطة</td><td>التكامل</td></tr>
+            <tr><td>٧</td><td>من البسيط إلى المعقد، من العام إلى الخاص</td><td>التخصص التدريجي</td></tr>
+            <tr><td>٨</td><td>يخضع لشروط داخلية وخارجية</td><td>الوراثة + البيئة</td></tr>
+            <tr><td>٩</td><td>يخضع لمبدأ الفروق الفردية</td><td>الفروق الفردية</td></tr>
+            <tr><td>١٠</td><td>يخضع لمبدأ الفروق بين الجنسين</td><td>الفروق الجنسية</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FINAL CALLOUT -->
+    <div class="callout">
+      <h4>🎯 نصيحة ذهبية للامتحان</h4>
+      <p>
+        احرص على فهم الفرق بين مناهج البحث الخمسة مع مثال لكل منهج. وتذكّر دائماً أن مبادئ النمو ليست معلومات منفصلة بل هي خريطة متكاملة تصف كيف ينمو الإنسان. ربط كل مبدأ بمثال من الحياة اليومية يُثبّته في الذاكرة بشكل دائم.
+      </p>
+    </div>
+
+    <!-- NAV ARROWS -->
+    <div class="nav-arrows">
+      <button class="arrow-btn" onclick="showPage('stages')">
+        <span>→</span> السابق
+      </button>
+      <span class="page-indicator">٤ / ٤</span>
+      <button class="arrow-btn" onclick="showPage('home')">
+        الرئيسية <span>🏠</span>
+      </button>
+    </div>
+
+  </div>
+</div><!-- end revision -->
+
+
+<!-- ==========================================
+     JAVASCRIPT
+=========================================== -->
+<script>
+
+// ---- PAGE NAVIGATION ----
+
+const pages      = ['home','ch1','ch2','stages','revision'];
+const topBtns    = document.querySelectorAll('.nav-links button');
+const bottomBtns = document.querySelectorAll('.bnav-item');
+
+function showPage(id, clickedTopBtn, clickedBnId) {
+  // hide all pages
+  pages.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) el.classList.remove('active');
+  });
+
+  // show requested page
+  const target = document.getElementById('page-' + id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // update top nav active state
+  topBtns.forEach((btn, i) => {
+    btn.classList.remove('active');
+    if (pages[i] === id) btn.classList.add('active');
+  });
+
+  // update bottom nav active state
+  bottomBtns.forEach((btn, i) => {
+    btn.classList.remove('active');
+    if (pages[i] === id) btn.classList.add('active');
+  });
+
+  // update chapter 1 progress when entering ch1
+  if (id === 'ch1') updateCh1Progress();
+}
+
+// ---- TOGGLE ACCORDION ----
+
+function toggleSection(btn) {
+  const content = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+
+  // close all siblings in same parent
+  const parent = btn.closest('.section-block') || document;
+  parent.querySelectorAll('.toggle-btn.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+
+  if (!isOpen) {
+    btn.classList.add('open');
+    content.classList.add('open');
+    // update progress
+    updateCh1Progress();
+  }
+}
+
+// ---- PROGRESS BAR FOR CHAPTER 1 ----
+
+function updateCh1Progress() {
+  const total  = document.querySelectorAll('#page-ch1 .toggle-btn').length;
+  const opened = document.querySelectorAll('#page-ch1 .toggle-btn.open').length;
+  const pct = total > 0 ? Math.round((opened / total) * 100) : 0;
+  const bar = document.getElementById('ch1-progress');
+  const txt = document.getElementById('ch1-progress-txt');
+  if (bar) bar.style.width = pct + '%';
+  if (txt) txt.textContent  = pct + '٪';
+}
+
+// ---- STAGE TABS ----
+
+function showStage(id, clickedTab) {
+  // hide all stages
+  document.querySelectorAll('.stage-content').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.stage-tab').forEach(t => t.classList.remove('active'));
+
+  // show requested stage
+  const stage = document.getElementById('stage-' + id);
+  if (stage) stage.classList.add('active');
+  if (clickedTab) clickedTab.classList.add('active');
+}
+
+// ---- SCROLL TO TOP BUTTON ----
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTopBtn');
+  if (!btn) return;
+  if (window.scrollY > 400) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+});
+
+// ---- HOME CARD CLICK GUARD ----
+// The home cards call showPage() directly via onclick,
+// but we also need to handle clicks that hit child elements.
+document.querySelectorAll('.home-card').forEach(card => {
+  card.style.cursor = 'pointer';
+});
+
+</script>
+</body>
+  </html>
